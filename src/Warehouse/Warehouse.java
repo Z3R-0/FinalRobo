@@ -3,7 +3,6 @@ package Warehouse;
 import java.util.ArrayList;
 
 public class Warehouse {
-<<<<<<< HEAD
     //VARIABLES
     private Product product;
     private int[] size;
@@ -34,7 +33,4 @@ public class Warehouse {
             
         }
     }
-=======
-
->>>>>>> d7711f5e931ac7600ee6e5cfa099101e1d4f523f
 }
