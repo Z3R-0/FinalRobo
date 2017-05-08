@@ -27,10 +27,4 @@ public class Warehouse {
     public int[] getSize() {
         return size;
     }
-
-    public void restock(ArrayList<Warehouse> alist){
-        for(Warehouse ware : alist){
-            
-        }
-    }
 }
