@@ -6,5 +6,7 @@ public class Customer {
     String adress;
     String zipCode;
     String city;
+    
+    //test
 
 }
