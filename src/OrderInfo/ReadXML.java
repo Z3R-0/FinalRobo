@@ -26,19 +26,25 @@ public class ReadXML {
             // normalize text representation
             doc.getDocumentElement().normalize();
 
-            NodeList order = doc.getElementsByTagName("bestelling");
-            for (int s = 0; s < order.getLength(); s++) {
+            NodeList bestelling = doc.getElementsByTagName("bestelling");
+            for (int s = 0; s < bestelling.getLength(); s++) {
             	
             	System.out.println("test3");
- 
-                Node orderNumberNode = order.item(s);
-               if ((orderNumberNode.getNodeType() == Node.ELEMENT_NODE) && ((Element) orderNumberNode).getTagName().equals("ordernummer")) {
-                    NodeList textFNList = orderNumberNode.getChildNodes();
+
+                Node ordernummer = bestelling.item(s);
+                System.out.println("test4");
+               if (ordernummer.getNodeType() == Node.ELEMENT_NODE) {
+            	   
+            	   
+            	   
+                    NodeList textFNList = ordernummer.getChildNodes();
                     System.out.println("test4");
                     System.out.println(textFNList.item(0).getNodeValue().trim());
                     
-                   // Order order1 = new Order(Integer.parseInt(textFNList.item(0).getNodeValue().trim()));
-                   // System.out.println(order1);
+                    System.out.println("test5");
+                    
+                    Order order1 = new Order(Integer.parseInt(textFNList.item(0).getNodeValue().trim()));
+                    System.out.println(order1);
                 }
             }
 
