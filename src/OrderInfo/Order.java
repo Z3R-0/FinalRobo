@@ -21,4 +21,10 @@ public class Order {
 		products.add(product);
 	}
 
+	public ArrayList<Integer> getProducts() {
+		return products;
+	}
+	
+	
+
 }
