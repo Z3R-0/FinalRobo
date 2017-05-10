@@ -1,5 +1,10 @@
 package RobotoAppMain;
 
+import java.util.ArrayList;
+
+import RobotClasses.Robot;
+import Warehouse.*;
+import Algorithms.Greedy;
 import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -31,6 +36,11 @@ public class Controller implements Initializable {
         });
 
         fxButtonExecute.setOnAction((event) -> {
+            ArrayList<Product> p = new ArrayList<Product>();
+            Greedy greedy = new Greedy();
+            Location locaRobot = new Location(0, 1);
+            Robot robot = new Robot(locaRobot);
+            robot.moveRobot(greedy.CalculatePath(p));
             fxTextAreaStatusRetrieve.appendText("Order uitgevoerd!\n");
         });
 
