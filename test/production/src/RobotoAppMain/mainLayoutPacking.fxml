@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RobotoAppMain.Controller2">
+    <BorderPane fx:id="mainPanePacking" prefHeight="980.0" prefWidth="1820.0">
+        <right>
+            <SplitPane dividerPositions="0.4146341463414634" orientation="VERTICAL" prefHeight="945.0" prefWidth="821.0" BorderPane.alignment="CENTER">
+                <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <children>
+                            <Pane prefHeight="386.0" prefWidth="820.0" style="-fx-background-color: BEIGE;">
+                                <children>
+                                    <Button fx:id="fxButtonAlgorithm1" layoutX="73.0" layoutY="47.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="294.0" text="Algoritme 1" />
+                                    <Button layoutX="474.0" layoutY="47.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="294.0" text="Algoritme 2" />
+                                    <Button layoutX="73.0" layoutY="235.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="294.0" text="Algoritme 3" />
+                                    <Button layoutX="474.0" layoutY="235.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="294.0" text="Algoritme 4" />
+                                </children>
+                            </Pane>
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: LIGHTGREY;">
+                        <children>
+                            <Pane layoutX="23.0" layoutY="21.0" prefHeight="511.0" prefWidth="784.0" style="-fx-border-color: BLACK;" />
+                            <Button layoutX="47.0" layoutY="425.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="219.0" text="Weergeven in map" />
+                            <Label layoutX="47.0" layoutY="51.0" text="Resultaat 1:" />
+                            <Label layoutX="47.0" layoutY="145.0" text="Resultaat 1:" />
+                            <Label layoutX="47.0" layoutY="226.0" text="Resultaat 1:" />
+                            <Label layoutX="47.0" layoutY="305.0" text="Resultaat 1:" />
+                            <TextField layoutX="157.0" layoutY="46.0" />
+                            <TextField layoutX="157.0" layoutY="140.0" />
+                            <TextField layoutX="157.0" layoutY="221.0" />
+                            <TextField layoutX="157.0" layoutY="300.0" />
+                            <TextArea fx:id="fxTextAreaStatusPacking" layoutX="377.0" layoutY="71.0" prefHeight="426.0" prefWidth="419.0" />
+                            <Label layoutX="377.0" layoutY="41.0" text="Status:" />
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+        </right>
+        <left>
+            <Pane prefHeight="945.0" prefWidth="945.0" style="-fx-background-color: LIGHTBLUE;" BorderPane.alignment="CENTER">
+                <children>
+                    <Canvas height="900.0" layoutX="17.0" layoutY="21.0" width="900.0" />
+                </children>
+            </Pane>
+        </left>
+        <top>
+            <Pane prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: BLACK;" BorderPane.alignment="CENTER">
+                <children>
+                    <Label layoutX="408.0" layoutY="7.0" prefHeight="21.0" prefWidth="90.0" text="Ophaalrobot">
+                        <opaqueInsets>
+                            <Insets />
+                        </opaqueInsets>
+                    </Label>
+                    <Label layoutX="1331.0" layoutY="7.0" text="Inpakrobot" />
+                    <Button fx:id="fxButtonRetrieve" layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="905.0" />
+                    <Button layoutX="916.0" layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="904.0" />
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="905.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                </children>
+            </Pane>
+        </top>
+    </BorderPane>
+
+</AnchorPane>
