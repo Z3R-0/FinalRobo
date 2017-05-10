@@ -1,33 +1,37 @@
 package OrderInfo;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+
 public class Order {
-    private int ordernummer;
+    private int ordernumber;
     private Date date;
+    private Customer customer;
+ ArrayList<Integer> products = new ArrayList<Integer>();  
     
-    // het leven is aids
-
-    //CONSTRUCTOR
-    public Order(int ordernummer){//}, Date date) {
-        this.ordernummer = ordernummer;
-       // this.date = date;
+        //CONSTRUCTOR
+    public Order(int ordernumber, Date date, Customer customer) {
+        this.ordernumber = ordernumber;
+        this.date = date;
+        this.customer = customer;
     }
 
 
     //SETTERS
-    @XmlElement
-    public void setOrdernummer(int ordernummer) {
-        this.ordernummer = ordernummer;
+    public void setOrdernummer(int ordernumber) {
+        this.ordernumber = ordernumber;
     }
 
-    @XmlElement
     public void setDate(Date date) {
         this.date = date;
     }
+
+
+	public void addProducts(int product) {
+		products.add(product);
+	}
+
 
 }
