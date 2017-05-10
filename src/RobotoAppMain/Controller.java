@@ -42,10 +42,10 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fxButtonExecute.setOnAction((event) -> {
             ReadXML read = new ReadXML();
-            System.out.println("Order: " +read.getOrder());
             fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
             read.readXmlFile(fxTextFieldFile.getText());
             fxTextAreaStatusRetrieve.appendText("Received file URL\n");
+            System.out.println(read.getOrder().getProducts());
             Main.producten = read.getOrder().getProducts();
             System.out.println("Producten in warehouse: " + Main.producten);
             fxTextAreaStatusRetrieve.appendText("Added products to ArrayList\n");
