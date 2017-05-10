@@ -22,7 +22,7 @@ public class ReadXML {
 	public static void main(String[] args) {
 
 		try {
-			File xmlFile = new File("C:/Users/Erwin/Documents/FinalRobo/src/XMLtest.xml");
+			File xmlFile = new File("XMLtest.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document orderList = dBuilder.parse(xmlFile);
