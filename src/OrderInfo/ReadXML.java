@@ -56,8 +56,6 @@ public class ReadXML {
 								Integer.parseInt(eElement.getElementsByTagName("artikelnr").item(j).getTextContent()));
 					}
 
-					System.out.println(order1.products);
-
 				}
 			}
 		} catch (Exception e) {

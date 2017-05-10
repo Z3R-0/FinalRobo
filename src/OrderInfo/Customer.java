@@ -1,11 +1,12 @@
 package OrderInfo;
 
 public class Customer {
-    String surName;
-    String lastName;
-    String adress;
-    String zipCode;
-    String city;
+	private int customerId = 1;
+	private String surName;
+	private String lastName;
+	private String adress;
+	private String zipCode;
+	private String city;
     
     //CONSTRUCTOR
 	public Customer(String surName, String lastName, String adress, String zipCode, String city) {
