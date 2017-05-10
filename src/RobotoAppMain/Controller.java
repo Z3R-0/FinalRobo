@@ -3,6 +3,7 @@ package RobotoAppMain;
 import java.io.File;
 import java.util.ArrayList;
 
+import OrderInfo.ReadXML;
 import RobotClasses.Robot;
 import Warehouse.*;
 import Algorithms.Greedy;
@@ -35,17 +36,26 @@ public class Controller implements Initializable {
     @FXML
     private Button fxButtonSelectFile;
 
+    private static String something;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fxButtonExecute.setOnAction((event) -> {
-            Location p1Loc = new Location(3,5);
-            Product p1 = new Product("Kaas", p1Loc, 4);
-            ArrayList<Product> p = new ArrayList<Product>();
-            p.add(p1);
+            ReadXML read = new ReadXML();
+            System.out.println("Order: " +read.getOrder());
+            fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
+            read.readXmlFile(fxTextFieldFile.getText());
+            fxTextAreaStatusRetrieve.appendText("Received file URL\n");
+            Main.producten = read.getOrder().getProducts();
+            System.out.println("Producten in warehouse: " + Main.producten);
+            fxTextAreaStatusRetrieve.appendText("Added products to ArrayList\n");
             Greedy greedy = new Greedy();
+            fxTextAreaStatusRetrieve.appendText("Created Greedy algorithm\n");
             Location locaRobot = new Location(0, 1);
             Robot robot = new Robot(locaRobot);
-            int result = robot.moveRobot(greedy.CalculatePath(p));
+            fxTextAreaStatusRetrieve.appendText("Created robot with start position\n");
+            int result = robot.moveRobot(greedy.CalculatePath(Main.producten));
+            fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
             if(result == 1){
                 fxTextAreaStatusRetrieve.appendText("Order uitgevoerd!\n");
             } else {
@@ -68,11 +78,12 @@ public class Controller implements Initializable {
         });
 
         fxButtonSelectFile.setOnAction((event) -> {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(mainPaneRetrieve.getScene().getWindow());
-        fxTextFieldFile.setText(file.getAbsolutePath());
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showOpenDialog(mainPaneRetrieve.getScene().getWindow());
+            fxTextFieldFile.setText(file.getAbsolutePath());
+            something = fxTextFieldFile.getText();
         });
 
         fxButtonAdd.setOnAction((event) -> {

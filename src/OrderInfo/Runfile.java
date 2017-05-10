@@ -11,7 +11,7 @@ public class Runfile {
 		read1.readXmlFile("XMLtest.xml");
 		System.out.println(read1.getCustomer().toString());
 		
-		read1.getOrder().;
+		read1.getOrder();
 	}
 
 }

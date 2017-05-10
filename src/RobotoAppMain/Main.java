@@ -26,7 +26,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+
         producten = new ArrayList<Product>();
         
         Location l1 = new Location(1,2);
@@ -42,14 +42,16 @@ public class Main extends Application {
         Location l6 = new Location(6,2);
         Product p6 = new Product("a;sldliewqrwfdkjgdh", l6 , 5);
        
-        producten.add(p1);
-        producten.add(p2);
-        producten.add(p3);
-        producten.add(p4);
-        producten.add(p5);
-        producten.add(p6);
+        Main.producten.add(p1);
+        Main.producten.add(p2);
+        Main.producten.add(p3);
+        Main.producten.add(p4);
+        Main.producten.add(p5);
+        Main.producten.add(p6);
         
         Warehouse warehouse = new Warehouse(producten);
-        
+        System.out.println("Warehouse: " + producten);
+
+        launch(args);
     }
 }
