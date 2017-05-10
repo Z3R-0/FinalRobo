@@ -1,6 +1,5 @@
 package OrderInfo;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,15 +16,7 @@ public class Order {
 		this.customer = customer;
 	}
 
-	// SETTERS
-	public void setOrdernummer(int ordernumber) {
-		this.ordernumber = ordernumber;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
+	// Add products to list
 	public void addProducts(int product) {
 		products.add(product);
 	}

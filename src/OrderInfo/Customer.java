@@ -1,7 +1,8 @@
 package OrderInfo;
 
 public class Customer {
-	private int customerId = 1;
+	private static int count = 0;
+	private int customerId;
 	private String surName;
 	private String lastName;
 	private String adress;
@@ -15,6 +16,15 @@ public class Customer {
 		this.adress = adress;
 		this.zipCode = zipCode;
 		this.city = city;
+		this.customerId = count++;
+	}
+
+	public String toString() {
+		String text;
+		text = "Voornaam: " + surName + "\n" + "Achternaam: " + lastName + "\n" + "Adres: " + adress + "\n"
+				+ "Postcode: " + zipCode + "\n" + "Woonplaats: " + city;
+
+		return text;
 	}
 
 }
