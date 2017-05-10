@@ -1,7 +1,8 @@
 package RobotClasses;
 
-import Warehouse.Location;
-import Warehouse.Product;
+import Warehouse.*;
+
+import java.util.ArrayList;
 
 public class Robot {
     private Location locationRobot;
@@ -14,15 +15,16 @@ public class Robot {
         return locationRobot;
     }
 
-    public void moveRobot(Product[] ps){
+    public int moveRobot(ArrayList<Product> ps){
         for(Product p : ps){
             while(getLocationRobot() != p.getLocation()){
-                //execute algorithm
+                //execute arduino code
             }
             if(getLocationRobot() == p.getLocation()){
                 retrieveProduct(p);
             }
         }
+        return 1;
     }
 
     public void retrieveProduct(Product p){
