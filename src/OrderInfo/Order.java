@@ -1,13 +1,15 @@
 package OrderInfo;
 
 import java.util.ArrayList;
+import Warehouse.*;
+import RobotoAppMain.Main;
 import java.util.Date;
 
 public class Order {
 	private int ordernumber;
 	private Date date;
 	private Customer customer;
-	ArrayList<Integer> products = new ArrayList<Integer>();
+	ArrayList<Product> products = new ArrayList<Product>();
 
 	// CONSTRUCTOR
 	public Order(int ordernumber, Date date, Customer customer) {
@@ -17,11 +19,15 @@ public class Order {
 	}
 
 	// Add products to list
-	public void addProducts(int product) {
-		products.add(product);
+	public void addProducts(int p) {
+		for (int i=0; i<= Main.producten.size(); i++){
+			if(Main.producten.get(i).getId()==p){
+				products.add(Main.producten.get(i));
+			}
+		}
 	}
 
-	public ArrayList<Integer> getProducts() {
+	public ArrayList<Product> getProducts() {
 		return products;
 	}
 	

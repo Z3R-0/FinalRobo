@@ -4,27 +4,19 @@ import java.util.ArrayList;
 
 public class Warehouse {
     //VARIABLES
-    private Product product;
-    private int[] size;
-    private int[][] productLocations;
+    private ArrayList<Product> product;
 
     //CONSTRUCTOR
-    public Warehouse(Product p, int[] s, int[][] pL){
-        product = p;
-        size = s;
-        productLocations = pL;
+    public Warehouse(ArrayList<Product> p){
+        product = new ArrayList<Product>();
+        product.addAll(p);
+
     }
 
     //FUNCTIONS
-    public int[][] getProductLocations() {
-        return productLocations;
-    }
-
-    public Product getProduct() {
+    public ArrayList<Product> getProduct() {
         return product;
     }
 
-    public int[] getSize() {
-        return size;
-    }
+
 }
