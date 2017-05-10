@@ -15,10 +15,14 @@ public class Robot {
         return locationRobot;
     }
 
+    public void setLocationRobot(Location locationRobot) {
+        this.locationRobot = locationRobot;
+    }
+
     public int moveRobot(ArrayList<Product> ps){
         for(Product p : ps){
             while(getLocationRobot() != p.getLocation()){
-                //execute arduino code
+                setLocationRobot(p.getLocation());
             }
             if(getLocationRobot() == p.getLocation()){
                 retrieveProduct(p);
