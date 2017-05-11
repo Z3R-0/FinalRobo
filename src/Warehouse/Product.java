@@ -46,9 +46,10 @@ public class Product {
     
     public String toString(){
     	String string = "Naam: " + name +
-    			"Location: "  + location +
-    			"Formaat: " + height +
-    			"Voorradig: ";
+    			" Location: {x = "  + location.getX() +
+                ", y = " + location.getY() +
+    			"} Formaat: " + height +
+    			" Voorradig: ";
     	if (inStock){
     		string = string + "ja";
     	} else {

@@ -53,7 +53,7 @@ public class ReadXML {
 							customer1);
 
 					NodeList artikelnr = eElement.getElementsByTagName("artikelnr");
-					for (int j = 1; j <= artikelnr.getLength(); j++) {
+					for (int j = 1; j < artikelnr.getLength(); j++) {
 						order1.addProducts(Integer.parseInt(eElement.getElementsByTagName("artikelnr").item(j).getTextContent()));
 					}
 				}

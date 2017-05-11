@@ -15,23 +15,22 @@
    <children>
       <BorderPane fx:id="mainPaneRetrieve" prefHeight="980.0" prefWidth="1820.0">
          <right>
-            <SplitPane dividerPositions="0.24639580602883354" orientation="VERTICAL" prefHeight="945.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.14846235418875928" orientation="VERTICAL" prefHeight="945.0" prefWidth="627.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="293.0" style="-fx-background-color: BEIGE;">
                      <children>
-                        <TextField fx:id="fxTextFieldFile" layoutX="126.0" layoutY="88.0" />
-                        <Button fx:id="fxButtonAdd" layoutX="53.0" layoutY="27.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="XML-bestand toevoegen" />
-                        <Label layoutX="53.0" layoutY="93.0" prefHeight="21.0" prefWidth="60.0" text="Bestand:" />
-                        <Button fx:id="fxButtonExecute" layoutX="53.0" layoutY="150.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="Order uitvoeren" />
-                        <Button fx:id="fxButtonSelectFile" layoutX="319.0" layoutY="88.0" mnemonicParsing="false" text="..." />
+                        <TextField fx:id="fxTextFieldFile" layoutX="126.0" layoutY="24.0" />
+                        <Label layoutX="53.0" layoutY="29.0" prefHeight="21.0" prefWidth="60.0" text="Bestand:" />
+                        <Button fx:id="fxButtonExecute" layoutX="53.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="Order uitvoeren" />
+                        <Button fx:id="fxButtonSelectFile" layoutX="319.0" layoutY="24.0" mnemonicParsing="false" text="..." />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: LIGHTGREY;">
                      <children>
-                        <Pane layoutX="6.0" layoutY="14.0" prefHeight="684.0" prefWidth="611.0" style="-fx-border-color: BLACK;">
+                        <Pane layoutX="6.0" layoutY="14.0" prefHeight="775.0" prefWidth="611.0" style="-fx-border-color: BLACK;">
                            <children>
                               <Label layoutX="14.0" layoutY="14.0" text="Status:" />
-                              <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="14.0" layoutY="35.0" prefHeight="635.0" prefWidth="582.0" />
+                              <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="14.0" layoutY="35.0" prefHeight="726.0" prefWidth="582.0" />
                            </children>
                         </Pane>
                      </children>
