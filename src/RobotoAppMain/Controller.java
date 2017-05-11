@@ -64,13 +64,14 @@ public class Controller implements Initializable {
                 int result = robot.moveRobot(greedy.CalculatePath(Main.producten));
                 fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
                 if(result == 1){
-                    String tos = "";
+                    StringBuilder tos = new StringBuilder("");
                     fxTextAreaStatusRetrieve.appendText("Order uitgevoerd!\n");
                     for(Product pro : Main.producten){
+                        fxTextAreaStatusRetrieve.appendText("Hiiii");
                         System.out.println(pro.toString());
-                        tos = pro.toString();
+                        tos.append(pro.toString());
                     }
-                    fxTextAreaStatusRetrieve.appendText(tos);
+                    fxTextAreaStatusRetrieve.appendText(tos.toString());
                 } else {
                     fxTextAreaStatusRetrieve.appendText("Order mislukt!\n");
                 }
