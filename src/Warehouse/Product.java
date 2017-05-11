@@ -43,6 +43,20 @@ public class Product {
     public void inStock(boolean inStock) {
         this.inStock = inStock;
     }
+    
+    public String toString(){
+    	String string = "Naam: " + name +
+    			"Location: "  + location +
+    			"Formaat: " + height +
+    			"Voorradig: ";
+    	if (inStock){
+    		string = string + "ja";
+    	} else {
+    		string =  string + "nee";
+    	}
+    	
+    	return string;
+    }
    
     
 }
