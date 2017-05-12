@@ -30,17 +30,17 @@ public class Main extends Application {
         producten = new ArrayList<Product>();
         
         Location l1 = new Location(1,2);
-        Product p1 = new Product("a;sldlfdkjgdh", l1 , 5);
+        Product p1 = new Product(5, l1 , 5);
         Location l2 = new Location(1,3);
-        Product p2 = new Product("a;lkjkgaefdkjgdh", l2 , 5);
+        Product p2 = new Product(5, l2 , 5);
         Location l3 = new Location(8,2);
-        Product p3 = new Product("a;sldlfdk;kasvdjbjgdh", l3 , 5);
+        Product p3 = new Product(6, l3 , 5);
         Location l4 = new Location(3,4);
-        Product p4 = new Product("a;sldlliklfdkjgdh", l4 , 5);
+        Product p4 = new Product(3, l4 , 5);
         Location l5 = new Location(3,5);
-        Product p5 = new Product("a;sdvkkjsldlfdkjgdh", l5 , 5);
+        Product p5 = new Product(43, l5 , 5);
         Location l6 = new Location(6,2);
-        Product p6 = new Product("a;sldliewqrwfdkjgdh", l6 , 5);
+        Product p6 = new Product(23, l6 , 5);
        
         Main.producten.add(p1);
         Main.producten.add(p2);
