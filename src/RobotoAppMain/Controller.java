@@ -10,6 +10,7 @@ import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
@@ -20,6 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    //VARIABLES
     @FXML
     private BorderPane mainPaneRetrieve;
     @FXML
@@ -99,8 +101,12 @@ public class Controller implements Initializable {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showOpenDialog(mainPaneRetrieve.getScene().getWindow());
-            fxTextFieldFile.setText(file.getAbsolutePath());
-            something = fxTextFieldFile.getText();
+            try {
+                fxTextFieldFile.setText(file.getAbsolutePath());
+                something = fxTextFieldFile.getText();
+            } catch (NullPointerException npe){
+                System.out.println("No file chosen");
+            }
         });
     }
 }
