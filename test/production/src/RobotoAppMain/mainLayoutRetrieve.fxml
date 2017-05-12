@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="980.0" prefWidth="1820.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RobotoAppMain.Controller">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RobotoAppMain.Controller">
    <children>
-      <BorderPane fx:id="mainPaneRetrieve" prefHeight="980.0" prefWidth="1820.0">
+      <BorderPane fx:id="mainPaneRetrieve" prefHeight="768.0" prefWidth="1366.0">
          <right>
-            <SplitPane dividerPositions="0.14846235418875928" orientation="VERTICAL" prefHeight="945.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.19015047879616964" orientation="VERTICAL" prefHeight="733.0" prefWidth="621.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="293.0" style="-fx-background-color: BEIGE;">
                      <children>
@@ -27,10 +27,10 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: LIGHTGREY;">
                      <children>
-                        <Pane layoutX="6.0" layoutY="14.0" prefHeight="775.0" prefWidth="611.0" style="-fx-border-color: BLACK;">
+                        <Pane layoutX="6.0" layoutY="14.0" prefHeight="565.0" prefWidth="611.0" style="-fx-border-color: BLACK;">
                            <children>
                               <Label layoutX="14.0" layoutY="14.0" text="Status:" />
-                              <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="14.0" layoutY="35.0" prefHeight="726.0" prefWidth="582.0" />
+                              <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="15.0" layoutY="39.0" prefHeight="510.0" prefWidth="582.0" />
                            </children>
                         </Pane>
                      </children>
@@ -41,20 +41,21 @@
          <top>
             <Pane prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: BLACK;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="408.0" layoutY="7.0" prefHeight="21.0" prefWidth="90.0" text="Ophaalrobot">
+                  <Label layoutX="998.0" layoutY="8.0" text="Inpakrobot" />
+                  <Pane layoutX="2.0" layoutY="2.0" prefHeight="33.0" prefWidth="683.0" style="-fx-background-color: LIGHTGREY;" />
+                  <Label layoutX="297.0" layoutY="8.0" prefHeight="21.0" prefWidth="90.0" text="Ophaalrobot">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label layoutX="1331.0" layoutY="7.0" text="Inpakrobot" />
-                  <Button layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="905.0" />
-                  <Button fx:id="fxButtonPacking" layoutX="916.0" layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="904.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="905.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                  <Button layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="683.0" />
+                  <Button fx:id="fxButtonPacking" layoutX="693.0" layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="683.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="683.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
                </children>
             </Pane>
          </top>
          <left>
-            <Pane prefHeight="1000.0" prefWidth="1000.0" style="-fx-background-color: LIGHTBLUE;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="600.0" prefWidth="737.0" style="-fx-background-color: LIGHTBLUE;" BorderPane.alignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

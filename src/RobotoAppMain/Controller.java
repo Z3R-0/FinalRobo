@@ -86,7 +86,7 @@ public class Controller implements Initializable {
                 root = FXMLLoader.load(Controller2.class.getResource("mainLayoutPacking.fxml"), resources);
                 Stage stage = new Stage();
                 stage.setTitle("Magazijnrobot");
-                stage.setScene(new Scene(root, 1820, 980));
+                stage.setScene(new Scene(root, 1366, 768));
                 stage.show();
                 ((Node)(event.getSource())).getScene().getWindow().hide();
             } catch (IOException e) {
