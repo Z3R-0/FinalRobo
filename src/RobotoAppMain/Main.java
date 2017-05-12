@@ -41,6 +41,7 @@ public class Main extends Application {
         Product p5 = new Product(43, l5 , 5);
         Location l6 = new Location(6,2);
         Product p6 = new Product(23, l6 , 5);
+
        
         Main.producten.add(p1);
         Main.producten.add(p2);

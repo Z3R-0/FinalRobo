@@ -1,7 +1,6 @@
 package RobotoAppMain;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import OrderInfo.ReadXML;
 import RobotClasses.Robot;
@@ -22,8 +21,6 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    private Button fxButtonAdd;
-    @FXML
     private BorderPane mainPaneRetrieve;
     @FXML
     private TextArea fxTextAreaStatusRetrieve;
@@ -41,25 +38,45 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fxButtonExecute.setOnAction((event) -> {
-            ReadXML read = new ReadXML();
-            fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
-            read.readXmlFile(fxTextFieldFile.getText());
-            fxTextAreaStatusRetrieve.appendText("Received file URL\n");
-            System.out.println(read.getOrder().getProducts());
-            Main.producten = read.getOrder().getProducts();
-            System.out.println("Producten in warehouse: " + Main.producten);
-            fxTextAreaStatusRetrieve.appendText("Added products to ArrayList\n");
-            Greedy greedy = new Greedy();
-            fxTextAreaStatusRetrieve.appendText("Created Greedy algorithm\n");
-            Location locaRobot = new Location(0, 1);
-            Robot robot = new Robot(locaRobot);
-            fxTextAreaStatusRetrieve.appendText("Created robot with start position\n");
-            int result = robot.moveRobot(greedy.CalculatePath(Main.producten));
-            fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
-            if(result == 1){
-                fxTextAreaStatusRetrieve.appendText("Order uitgevoerd!\n");
+            if(!(fxTextFieldFile.getText().trim().isEmpty() || fxTextFieldFile == null)){
+                //CREATE XML READER
+                ReadXML read = new ReadXML();
+                fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
+
+                //READ SELECTED XML FILE AND ADD PRODUCTS TO ORDER
+                read.readXmlFile(fxTextFieldFile.getText());
+                fxTextAreaStatusRetrieve.appendText("Received file URL\n");
+                System.out.println(read.getOrder().getProducts());
+                Main.producten = read.getOrder().getProducts();
+                System.out.println("Producten in warehouse: " + Main.producten);
+                fxTextAreaStatusRetrieve.appendText("Added products to ArrayList\n");
+
+                //CREATE GREEDY ALGORITHM FOR TESTING
+                Greedy greedy = new Greedy();
+                fxTextAreaStatusRetrieve.appendText("Created Greedy algorithm\n");
+
+                //CREATE ROBOT WITH START LOCATION
+                Location locaRobot = new Location(0, 1);
+                Robot robot = new Robot(locaRobot);
+                fxTextAreaStatusRetrieve.appendText("Created robot with start position\n");
+
+                //CALCULATE PATH FOR ROBOT TO TAKE
+                int result = robot.moveRobot(greedy.CalculatePath(Main.producten));
+                fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
+                if(result == 1){
+                    StringBuilder tos = new StringBuilder("");
+                    fxTextAreaStatusRetrieve.appendText("Order uitgevoerd!\n");
+                    for(Product pro : Main.producten){
+                        fxTextAreaStatusRetrieve.appendText("Hiiii");
+                        System.out.println(pro.toString());
+                        tos.append(pro.toString());
+                    }
+                    fxTextAreaStatusRetrieve.appendText(tos.toString());
+                } else {
+                    fxTextAreaStatusRetrieve.appendText("Order mislukt!\n");
+                }
             } else {
-                fxTextAreaStatusRetrieve.appendText("Order mislukt!\n");
+                fxTextAreaStatusRetrieve.appendText("****************************************\n Selecteer een order om uit te voeren\n****************************************\n");
             }
         });
 
@@ -84,10 +101,6 @@ public class Controller implements Initializable {
             File file = fileChooser.showOpenDialog(mainPaneRetrieve.getScene().getWindow());
             fxTextFieldFile.setText(file.getAbsolutePath());
             something = fxTextFieldFile.getText();
-        });
-
-        fxButtonAdd.setOnAction((event) -> {
-            fxTextAreaStatusRetrieve.appendText("Bestand toegevoegd!\n" + fxTextFieldFile.getText() +"\n");
         });
     }
 }
