@@ -6,8 +6,7 @@ import Warehouse.Product;
 public class Greedy {
     public ArrayList<Product> CalculatePath(ArrayList<Product> order) {
         ArrayList<Product> route = new ArrayList<Product>();
-        System.out.println("Started creating path");
-        System.out.println(order);
+        System.out.println("Started creating Greedy path");
         route.add(order.get(0));
         order.remove(0);
         while(order.size()>=1){
@@ -28,7 +27,7 @@ public class Greedy {
                 order.remove(bestProduct);
             }
         }
-        System.out.println("Created path");
+        System.out.println("Created Greedy path");
         return route;
     }
 }

@@ -19,7 +19,9 @@ public class Robot {
         this.locationRobot = locationRobot;
     }
 
-    public int moveRobot(ArrayList<Product> ps){
+    public ArrayList<Product> moveRobot(ArrayList<Product> ps){
+        ArrayList<Product> psh = new ArrayList<Product>();
+        psh = ps;
         for(Product p : ps){
             while(getLocationRobot() != p.getLocation()){
                 setLocationRobot(p.getLocation());
@@ -28,7 +30,7 @@ public class Robot {
                 retrieveProduct(p);
             }
         }
-        return 1;
+        return psh;
     }
 
     public void retrieveProduct(Product p){

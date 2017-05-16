@@ -3,7 +3,6 @@ package RobotoAppMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import Warehouse.*;
 
@@ -12,7 +11,8 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    public static ArrayList<Product> producten;
+    public static ArrayList<Product> producten1;
+    public static ArrayList<Product> producten2;
 
 
 	@Override
@@ -24,10 +24,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
     }
 
-
     public static void main(String[] args) {
 
-        producten = new ArrayList<Product>();
+        producten1 = new ArrayList<Product>();
         
         Location l1 = new Location(1,2);
         Product p1 = new Product(5, l1 , 5);
@@ -43,15 +42,14 @@ public class Main extends Application {
         Product p6 = new Product(23, l6 , 5);
 
        
-        Main.producten.add(p1);
-        Main.producten.add(p2);
-        Main.producten.add(p3);
-        Main.producten.add(p4);
-        Main.producten.add(p5);
-        Main.producten.add(p6);
+        Main.producten1.add(p1);
+        Main.producten1.add(p2);
+        Main.producten1.add(p3);
+        Main.producten1.add(p4);
+        Main.producten1.add(p5);
+        Main.producten1.add(p6);
         
-        Warehouse warehouse = new Warehouse(producten);
-        System.out.println("Warehouse: " + producten);
+        Warehouse warehouse = new Warehouse(producten1);
 
         launch(args);
     }

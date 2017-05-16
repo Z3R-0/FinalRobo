@@ -45,14 +45,14 @@ public class Product {
     }
     
     public String toString(){
-    	String string = "Artikel Code: " + articleCode +
-    			"Location: "  + location +
-    			"Formaat: " + height +
-    			"Voorradig: ";
+    	String string = "\n{Artikel Code: " + articleCode +
+    			" Location: "  + location +
+    			" Formaat: " + height +
+    			" Voorradig: ";
     	if (inStock){
-    		string = string + "ja";
+    		string = string + "ja}";
     	} else {
-    		string =  string + "nee";
+    		string =  string + "nee}";
     	}
     	
     	return string;

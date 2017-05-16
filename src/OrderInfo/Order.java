@@ -20,9 +20,9 @@ public class Order {
 
 	// Add products to list
 	public void addProducts(int p) {
-		for (int i=0; i < Main.producten.size(); i++){
-			if(Main.producten.get(i).getId() == p){
-				products.add(Main.producten.get(i));
+		for (int i=0; i < Main.producten1.size(); i++){
+			if(Main.producten1.get(i).getId() == p){
+				products.add(Main.producten1.get(i));
 			}
 		}
 	}
