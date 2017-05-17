@@ -1,10 +1,12 @@
 package RobotoAppMain;
 
+import Database.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.Stage;
 import Warehouse.*;
+import java.sql.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,7 +27,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
+	    DBConnection connection = new DBConnection();
+	    connection.getData();
+        try {
+            connection.terminateConnection();
+            System.out.println("Connection terminated");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        /*
         producten1 = new ArrayList<Product>();
         
         Location l1 = new Location(1,2);
@@ -50,7 +60,8 @@ public class Main extends Application {
         Main.producten1.add(p6);
         
         Warehouse warehouse = new Warehouse(producten1);
-
+        */
         launch(args);
+
     }
 }
