@@ -11,7 +11,7 @@ public class DBConnection {
         try{
             Class.forName("com.mysql.jdbc.Driver");
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarehouseDB", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/WarehouseDB", "root", "usbw");
             st = con.createStatement();
 
         }catch(Exception ex){
@@ -25,7 +25,7 @@ public class DBConnection {
             rs = st.executeQuery(query);
             System.out.println("Records from Database");
             while(rs.next()){
-                String article = rs.getString("id");
+                String article = rs.getString("articleCode");
                 String locationX = rs.getString("locationX");
                 String locationY = rs.getString("locationY");
                 String inStock = rs.getString("inStock");
