@@ -35,7 +35,6 @@ public class Main extends Application {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        /*
         producten1 = new ArrayList<Product>();
         
         Location l1 = new Location(1,2);
@@ -60,8 +59,7 @@ public class Main extends Application {
         Main.producten1.add(p6);
         
         Warehouse warehouse = new Warehouse(producten1);
-        */
-        launch(args);
 
+        launch(args);
     }
 }
