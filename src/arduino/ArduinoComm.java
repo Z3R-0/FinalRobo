@@ -1,5 +1,6 @@
 package arduino;
 
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -9,23 +10,24 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener; 
 import java.util.Enumeration;
 
+
 public class ArduinoComm implements SerialPortEventListener {
 	SerialPort serialPort;
-        /** The port we're normally going to use. */
+        // The port we're normally going to use.
 	private static final String PORT_NAMES[] = { 
 			"COM3", // Windows
 	};
-	/**
-	* A BufferedReader which will be fed by a InputStreamReader 
-	* converting the bytes into characters 
-	* making the displayed results codepage independent
-	*/
+
+	// A BufferedReader which will be fed by a InputStreamReader
+	// converting the bytes into characters
+	// making the displayed results codepage independent
+
 	private BufferedReader input;
-	/** The output stream to the port */
+	// The output stream to the port
 	private OutputStream output;
-	/** Milliseconds to block while waiting for port open */
+	// Milliseconds to block while waiting for port open
 	private static final int TIME_OUT = 2000;
-	/** Default bits per second for COM port. */
+	// Default bits per second for COM port.
 	private static final int DATA_RATE = 9600;
 
 	public void initialize() {
@@ -74,10 +76,10 @@ public class ArduinoComm implements SerialPortEventListener {
 		}
 	}
 
-	/**
-	 * This should be called when you stop using the port.
-	 * This will prevent port locking on platforms like Linux.
-	 */
+
+	 //This should be called when you stop using the port.
+	 //This will prevent port locking on platforms like Linux.
+
 	public synchronized void close() {
 		if (serialPort != null) {
 			serialPort.removeEventListener();
@@ -85,9 +87,9 @@ public class ArduinoComm implements SerialPortEventListener {
 		}
 	}
 
-	/**
-	 * Handle an event on the serial port. Read the data and print it.
-	 */
+
+	 // Handle an event on the serial port. Read the data and print it.
+
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
@@ -114,3 +116,4 @@ public class ArduinoComm implements SerialPortEventListener {
 		System.out.println("Started");
 	}
 }
+*/

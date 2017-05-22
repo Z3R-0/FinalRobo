@@ -36,6 +36,10 @@ public class Product {
         return height;
     }
 
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
     public void setLocation(Location Location) {
         this.location = location;
     }
@@ -45,14 +49,14 @@ public class Product {
     }
     
     public String toString(){
-    	String string = "\n{Artikel Code: " + articleCode +
+    	String string = "\n{Article Code: " + articleCode +
     			" Location: "  + location +
-    			" Formaat: " + height +
-    			" Voorradig: ";
+    			" Height: " + height +
+    			" In stock: ";
     	if (inStock){
-    		string = string + "ja}";
+    		string = string + "yes}";
     	} else {
-    		string =  string + "nee}";
+    		string =  string + "no}";
     	}
     	
     	return string;

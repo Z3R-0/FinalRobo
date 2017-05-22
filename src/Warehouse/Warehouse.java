@@ -13,6 +13,13 @@ public class Warehouse {
 
     }
 
+    @Override
+    public String toString() {
+        return "\n{" +
+                "Warehouse = " + product +
+                '}';
+    }
+
     //FUNCTIONS
     public ArrayList<Product> getProduct() {
         return product;

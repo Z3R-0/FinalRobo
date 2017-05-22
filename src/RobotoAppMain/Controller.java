@@ -6,7 +6,6 @@ import OrderInfo.ReadXML;
 import RobotClasses.Robot;
 import Warehouse.*;
 import Algorithms.Greedy;
-import javafx.application.Platform;
 import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,16 +14,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static RobotoAppMain.Main.warehouse;
 
 public class Controller implements Initializable {
     //VARIABLES
@@ -48,22 +46,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        GraphicsContext gc = fxCanvasRetrieve.getGraphicsContext2D();
+        drawGrid(gc);
 
         fxButtonExecute.setOnAction((event) -> {
             if(!(fxTextFieldFile.getText().trim().isEmpty() || fxTextFieldFile == null)){
-                //CREATE XML READER
-                ReadXML read = new ReadXML();
-                fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
-
-                //READ SELECTED XML FILE AND ADD PRODUCTS TO ORDER
-                read.readXmlFile(fxTextFieldFile.getText());
-                fxTextAreaStatusRetrieve.appendText("Received file URL\n");
-                Main.producten2 = read.getOrder().getProducts();
-                System.out.println(Main.producten1  + "\n ------------WAREHOUSE------------");
-                System.out.println("Producten in warehouse: " + Main.producten2 + "\n ------------ORDER------------");
-                fxTextAreaStatusRetrieve.appendText("Added products to ArrayList\n");
-
                 //CREATE GREEDY ALGORITHM FOR TESTING
                 Greedy greedy = new Greedy();
                 fxTextAreaStatusRetrieve.appendText("Created Greedy algorithm\n");
@@ -74,15 +61,14 @@ public class Controller implements Initializable {
                 fxTextAreaStatusRetrieve.appendText("Created robot with start position\n");
 
                 //CALCULATE PATH FOR ROBOT TO TAKE
-                System.out.println("\n--------------IMP1--------------\n" + Main.producten2 + "\n--------------IMP1-------------\n");
                 ArrayList<Product> orderArray = new ArrayList<Product>();
-                orderArray = robot.moveRobot(greedy.CalculatePath(Main.producten2));
-                System.out.println("\n--------------IMP2--------------\n" + Main.producten2 + orderArray + "\n--------------IMP2-------------\n");
+                orderArray = robot.moveRobot(greedy.CalculatePath(Main.orderList));
                 fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
 
                 for(Product p : orderArray){
                     fxTextAreaStatusRetrieve.appendText(p.toString());
                 }
+                fxTextAreaStatusRetrieve.appendText("\n****************************************************************\n\n");
 
             } else {
                 fxTextAreaStatusRetrieve.appendText("****************************************\n Select an order to execute\n****************************************\n");
@@ -114,6 +100,101 @@ public class Controller implements Initializable {
             } catch (NullPointerException npe){
                 System.out.println("No file chosen");
             }
+            //CREATE XML READER
+            ReadXML read = new ReadXML();
+            fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
+
+            //READ SELECTED XML FILE AND ADD PRODUCTS TO ORDER
+            read.readXmlFile(fxTextFieldFile.getText());
+            fxTextAreaStatusRetrieve.appendText("Received file URL\n");
+            Main.orderList = read.getOrder().getProducts();
+            System.out.println("------------WAREHOUSE------------" + warehouse);
+            System.out.println(" ------------ORDER------------\n" + Main.orderList);
+
+            gc.clearRect(0,0, 700, 700);
+            drawGrid(gc);
+            for(Product p: Main.orderList) {
+                drawProductLocations(gc, p);
+            }
         });
+    }
+
+    public void drawGrid(GraphicsContext gc){
+        //GRID----------------------------------------
+        //Square
+        gc.strokeLine(1, 1, 700, 1);
+        gc.strokeLine(700, 1, 700, 700);
+        gc.strokeLine(700, 700, 1, 700);
+        gc.strokeLine(1, 700, 1, 0);
+
+        //Grid lines
+        gc.strokeLine(0, 140, 700, 140);
+        gc.strokeLine(0, 280, 700, 280);
+        gc.strokeLine(0, 420, 700, 420);
+        gc.strokeLine(0, 560, 700, 560);
+        gc.strokeLine(117, 0, 117, 700);
+        gc.strokeLine(234, 0, 234, 700);
+        gc.strokeLine(351, 0, 351, 700);
+        gc.strokeLine(468, 0, 468, 700);
+        gc.strokeLine(585, 0, 585, 700);
+        //----------------------------------------------
+    }
+
+    public void drawProductLocations(GraphicsContext gc, Product pro) {
+        Location changedLoc = locationIdentifier(pro.getLocation());
+
+        //------------------------------------------------------------------------------
+        //ADD CODE M8
+        gc.fillRect(changedLoc.getX(), changedLoc.getY(), 80, 80);
+        //------------------------------------------------------------------------------
+    }
+
+    public void drawLines(GraphicsContext gc, ArrayList<Location> locations) {
+        locations = new ArrayList<Location>();
+
+        for(int i = 0; i < locations.size(); i++) {
+            int y = locations.get(i+1).getY();
+            int x = locations.get(i+1).getX();
+            for (Location xy : locations) {
+                gc.strokeLine(x, y, xy.getX(), xy.getY());
+            }
+        }
+    }
+
+    private Location locationIdentifier(Location loc){
+        //ints to add values to
+        int xActual = 0;
+        int yActual = 20;
+
+        //x Actuals
+        if(loc.getX() == 1){
+            xActual = 20;
+        } else if(loc.getX() == 2){
+            xActual = 127;
+        } else if(loc.getX() == 3){
+            xActual = 252;
+        } else if(loc.getX() == 4){
+            xActual = 369;
+        } else if(loc.getX() == 5){
+            xActual = 486;
+        } else if(loc.getX() == 6){
+            xActual = 603;
+        }
+
+        //y Actuals
+        if(loc.getY() == 1){
+            yActual = 30;
+        } else if(loc.getY() == 2){
+            yActual = 170;
+        } else if(loc.getY() == 3){
+            yActual = 310;
+        } else if(loc.getY() == 4){
+            yActual = 490;
+        } else if(loc.getY() == 5){
+            yActual = 630;
+        }
+        Location locFinal = new Location(xActual, yActual);
+
+        return locFinal;
     }
 }
