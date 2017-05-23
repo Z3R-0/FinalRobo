@@ -61,6 +61,10 @@ public class Product {
     	
     	return string;
     }
+
+    public Product clone(){
+        return new Product(id,location,height);
+    }
    
     
 }

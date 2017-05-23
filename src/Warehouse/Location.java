@@ -25,8 +25,8 @@ public class Location {
 	}
 
 	public static double getLengte(Location Locatie1, Location Locatie2) {
-		int xAfstand = Locatie1.getX() - Locatie2.getX();
-		int yAfstand = Locatie1.getY() - Locatie2.getY();
+		int xAfstand = Locatie2.getX() - Locatie1.getX();
+		int yAfstand = Locatie2.getY() - Locatie1.getY();
 		return Math.sqrt(Math.pow(xAfstand, 2) + Math.pow(yAfstand, 2));
 	}
 

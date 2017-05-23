@@ -2,10 +2,10 @@ package RobotoAppMain;
 
 import java.io.File;
 
+import Algorithms.ZNav;
 import OrderInfo.ReadXML;
 import RobotClasses.Robot;
 import Warehouse.*;
-import Algorithms.Greedy;
 import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -51,9 +51,9 @@ public class Controller implements Initializable {
 
         fxButtonExecute.setOnAction((event) -> {
             if(!(fxTextFieldFile.getText().trim().isEmpty() || fxTextFieldFile == null)){
-                //CREATE GREEDY ALGORITHM FOR TESTING
-                Greedy greedy = new Greedy();
-                fxTextAreaStatusRetrieve.appendText("Created Greedy algorithm\n");
+                //CREATE ALGORITHM FOR TESTING
+                ZNav znav = new ZNav();
+                fxTextAreaStatusRetrieve.appendText("Created algorithm\n");
 
                 //CREATE ROBOT WITH START LOCATION
                 Location locaRobot = new Location(0, 1);
@@ -62,8 +62,14 @@ public class Controller implements Initializable {
 
                 //CALCULATE PATH FOR ROBOT TO TAKE
                 ArrayList<Product> orderArray = new ArrayList<Product>();
-                orderArray = robot.moveRobot(greedy.CalculatePath(Main.orderList));
-                fxTextAreaStatusRetrieve.appendText("Calculated Path\n");
+                orderArray = robot.moveRobot(znav.BerekenStart(Main.orderList));
+                ArrayList<Location> correctPath = new ArrayList<Location>();
+                for(Product pro : orderArray){
+                    correctPath.add(pro.getLocation());
+                }
+                fxTextAreaStatusRetrieve.appendText("Calculated path\n");
+                drawLines(gc, correctPath);
+                fxTextAreaStatusRetrieve.appendText("Executed path");
 
                 for(Product p : orderArray){
                     fxTextAreaStatusRetrieve.appendText(p.toString());
@@ -119,7 +125,7 @@ public class Controller implements Initializable {
         });
     }
 
-    public void drawGrid(GraphicsContext gc){
+    private void drawGrid(GraphicsContext gc){
         //GRID----------------------------------------
         //Square
         gc.strokeLine(1, 1, 700, 1);
@@ -140,57 +146,58 @@ public class Controller implements Initializable {
         //----------------------------------------------
     }
 
-    public void drawProductLocations(GraphicsContext gc, Product pro) {
+    private void drawProductLocations(GraphicsContext gc, Product pro) {
         Location changedLoc = locationIdentifier(pro.getLocation());
 
-        //------------------------------------------------------------------------------
-        //ADD CODE M8
-        gc.fillRect(changedLoc.getX(), changedLoc.getY(), 80, 80);
-        //------------------------------------------------------------------------------
+        gc.fillRect(changedLoc.getX()+117/2-60, changedLoc.getY()+140/2-71.5, 80, 80);
     }
 
-    public void drawLines(GraphicsContext gc, ArrayList<Location> locations) {
-        locations = new ArrayList<Location>();
+    private void drawLines(GraphicsContext gc, ArrayList<Location> locations) {
+        ArrayList<Location> correctedLocations = new ArrayList<Location>();
 
-        for(int i = 0; i < locations.size(); i++) {
-            int y = locations.get(i+1).getY();
-            int x = locations.get(i+1).getX();
-            for (Location xy : locations) {
-                gc.strokeLine(x, y, xy.getX(), xy.getY());
-            }
+        for(Location loc : locations){
+            Location newLoc = locationIdentifier(loc);
+            correctedLocations.add(newLoc);
         }
+        int j = 1;
+        for(int i = 0; i < correctedLocations.size() - 1; i++) {
+            int y = correctedLocations.get(j).getY();
+            int x = correctedLocations.get(j).getX();
+            gc.strokeLine(correctedLocations.get(i).getX()+40, correctedLocations.get(i).getY() + 40,x + 20, y + 30);
+            j++;
+            }
     }
 
     private Location locationIdentifier(Location loc){
         //ints to add values to
         int xActual = 0;
-        int yActual = 20;
+        int yActual = 0;
 
         //x Actuals
-        if(loc.getX() == 1){
+        if(loc.getX() == 0){
             xActual = 20;
+        } else if(loc.getX() == 1){
+            xActual = 137;
         } else if(loc.getX() == 2){
-            xActual = 127;
-        } else if(loc.getX() == 3){
             xActual = 252;
-        } else if(loc.getX() == 4){
+        } else if(loc.getX() == 3){
             xActual = 369;
-        } else if(loc.getX() == 5){
+        } else if(loc.getX() == 4){
             xActual = 486;
-        } else if(loc.getX() == 6){
+        } else if(loc.getX() == 5){
             xActual = 603;
         }
 
         //y Actuals
-        if(loc.getY() == 1){
+        if(loc.getY() == 0){
             yActual = 30;
-        } else if(loc.getY() == 2){
+        } else if(loc.getY() == 1){
             yActual = 170;
-        } else if(loc.getY() == 3){
+        } else if(loc.getY() == 2){
             yActual = 310;
-        } else if(loc.getY() == 4){
+        } else if(loc.getY() == 3){
             yActual = 490;
-        } else if(loc.getY() == 5){
+        } else if(loc.getY() == 4){
             yActual = 630;
         }
         Location locFinal = new Location(xActual, yActual);
