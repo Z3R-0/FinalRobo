@@ -1,14 +1,16 @@
 package RobotClasses;
 
+import RobotoAppMain.Controller;
 import Warehouse.*;
 
 import java.util.ArrayList;
 
 public class Robot {
     private Location locationRobot;
-
-    public Robot(Location locationRobot) {
+    private Controller controller;
+    public Robot(Location locationRobot,Controller cont) {
         this.locationRobot = locationRobot;
+        this.controller = cont;
     }
 
     public Location getLocationRobot() {
@@ -23,12 +25,12 @@ public class Robot {
         ArrayList<Product> psh = new ArrayList<Product>();
         psh = ps;
         for(Product p : ps){
-            while(getLocationRobot() != p.getLocation()){
-                setLocationRobot(p.getLocation());
+            Controller.ard.serialWrite("X:" + String.valueOf(p.getLocation().getX()));
+            Controller.ard.serialWrite("Y:" + String.valueOf(p.getLocation().getY()));
+            while(!(Controller.ard.serialRead().equals("X:"+p.getLocation().getX()+"Y:"+p.getLocation().getY()))){
+                //wachten totdat hij print
             }
-            if(getLocationRobot() == p.getLocation()){
-                retrieveProduct(p);
-            }
+            controller.drawProductLocations(controller.gc,p,true);
         }
         return psh;
     }

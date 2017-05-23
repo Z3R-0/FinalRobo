@@ -21,12 +21,12 @@ public class Location {
 	}
 
 	public double getLengte(Location location1) {
-		return 2.0;
+		return Location.getLengte(location1,this);
 	}
 
 	public static double getLengte(Location Locatie1, Location Locatie2) {
-		int xAfstand = Locatie2.getX() - Locatie1.getX();
-		int yAfstand = Locatie2.getY() - Locatie1.getY();
+		double xAfstand = ((double)Locatie2.getX() - (double)Locatie1.getX())/2;
+		double yAfstand = (double)Locatie2.getY() - (double)Locatie1.getY();
 		return Math.sqrt(Math.pow(xAfstand, 2) + Math.pow(yAfstand, 2));
 	}
 

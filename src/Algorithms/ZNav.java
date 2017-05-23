@@ -19,7 +19,7 @@ public class ZNav extends Algorithm{
         Algorithm Greedy = new Greedy();
         ArrayList<Product> routeZAlgoritme = ZAlgorithm.BerekenStart(order);
         ArrayList<Product> routeGreedy = Greedy.BerekenStart(order);
-        //20pt moet hier nog tussen.
+
         if(BerekenLengte(routeZAlgoritme)>=BerekenLengte(routeGreedy)){
             return routeGreedy;
         }else{

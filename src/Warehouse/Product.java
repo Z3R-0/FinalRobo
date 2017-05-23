@@ -19,6 +19,13 @@ public class Product {
         inStock = true;
     }
 
+    private Product(int id, Location locatie, int hoogte,int articleCode) {
+        this.id = id;
+        this.location = locatie;
+        this.height = hoogte;
+        this.articleCode = articleCode;
+    }
+
     //FUNCTIONS
     public int getId() {
         return id;
@@ -48,6 +55,7 @@ public class Product {
         this.inStock = inStock;
     }
     
+/*
     public String toString(){
     	String string = "\n{Article Code: " + articleCode +
     			" Location: "  + location +
@@ -58,14 +66,20 @@ public class Product {
     	} else {
     		string =  string + "no}";
     	}
-    	
+
     	return string;
     }
+*/
 
-    public Product clone(){
-        return new Product(id,location,height);
+    public String toString(int counter) {
+        return "\nProduct " + counter +
+                ": location = " + location +
+                ", height = " + height +
+                '}';
     }
-   
-    
+
+    public Product cloneProduct(){
+        return new Product(id,location,height,articleCode);
+    }
 }
 

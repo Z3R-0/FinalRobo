@@ -12,7 +12,7 @@ public abstract class Algorithm {
 
     private ArrayList<Product> CloneOrder(ArrayList<Product> order){
         ArrayList<Product> orderClone = new ArrayList<Product>();
-        for (Product item : order) orderClone.add(item.clone());
+        for (Product item : order) orderClone.add(item.cloneProduct());
         return orderClone;
     }
 

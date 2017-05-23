@@ -2,10 +2,13 @@ package RobotoAppMain;
 
 import java.io.File;
 
+import Algorithms.Greedy;
+import Algorithms.ZAlgorithm;
 import Algorithms.ZNav;
 import OrderInfo.ReadXML;
 import RobotClasses.Robot;
 import Warehouse.*;
+import arduino.Arduino;
 import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,6 +17,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -42,11 +46,13 @@ public class Controller implements Initializable {
     private Canvas fxCanvasRetrieve;
 
     private static String something;
+    public static Arduino ard = new Arduino("COM3",9600);
+    public GraphicsContext gc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        GraphicsContext gc = fxCanvasRetrieve.getGraphicsContext2D();
+        gc = fxCanvasRetrieve.getGraphicsContext2D();
         drawGrid(gc);
 
         fxButtonExecute.setOnAction((event) -> {
@@ -57,22 +63,27 @@ public class Controller implements Initializable {
 
                 //CREATE ROBOT WITH START LOCATION
                 Location locaRobot = new Location(0, 1);
-                Robot robot = new Robot(locaRobot);
+                Robot robot = new Robot(locaRobot,this);
                 fxTextAreaStatusRetrieve.appendText("Created robot with start position\n");
 
                 //CALCULATE PATH FOR ROBOT TO TAKE
                 ArrayList<Product> orderArray = new ArrayList<Product>();
-                orderArray = robot.moveRobot(znav.BerekenStart(Main.orderList));
+
+                ArrayList<Product> correctRoute = znav.BerekenStart(Main.orderList);
+
+                orderArray = robot.moveRobot(correctRoute);
+
                 ArrayList<Location> correctPath = new ArrayList<Location>();
                 for(Product pro : orderArray){
                     correctPath.add(pro.getLocation());
                 }
                 fxTextAreaStatusRetrieve.appendText("Calculated path\n");
                 drawLines(gc, correctPath);
-                fxTextAreaStatusRetrieve.appendText("Executed path");
-
+                fxTextAreaStatusRetrieve.appendText("Drew path");
+                int counter = 1;
                 for(Product p : orderArray){
-                    fxTextAreaStatusRetrieve.appendText(p.toString());
+                    fxTextAreaStatusRetrieve.appendText(p.toString(counter));
+                    counter++;
                 }
                 fxTextAreaStatusRetrieve.appendText("\n****************************************************************\n\n");
 
@@ -103,24 +114,30 @@ public class Controller implements Initializable {
             try {
                 fxTextFieldFile.setText(file.getAbsolutePath());
                 something = fxTextFieldFile.getText();
+
+                //CREATE XML READER
+                ReadXML read = new ReadXML();
+                fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
+
+                //READ SELECTED XML FILE AND ADD PRODUCTS TO ORDER
+                read.readXmlFile(fxTextFieldFile.getText());
+                fxTextAreaStatusRetrieve.appendText("Received file URL\n");
+                Main.orderList = read.getOrder().getProducts();
             } catch (NullPointerException npe){
                 System.out.println("No file chosen");
             }
-            //CREATE XML READER
-            ReadXML read = new ReadXML();
-            fxTextAreaStatusRetrieve.appendText("ReadXML created\n");
-
-            //READ SELECTED XML FILE AND ADD PRODUCTS TO ORDER
-            read.readXmlFile(fxTextFieldFile.getText());
-            fxTextAreaStatusRetrieve.appendText("Received file URL\n");
-            Main.orderList = read.getOrder().getProducts();
-            System.out.println("------------WAREHOUSE------------" + warehouse);
-            System.out.println(" ------------ORDER------------\n" + Main.orderList);
-
+            /*
+            System.out.println("------------WAREHOUSE------------" + warehouse.toString());
+            System.out.println(" ------------ORDER------------\n" + Main.orderList.toString());
+            */
             gc.clearRect(0,0, 700, 700);
             drawGrid(gc);
-            for(Product p: Main.orderList) {
-                drawProductLocations(gc, p);
+            try {
+                for (Product p : Main.orderList) {
+                    drawProductLocations(gc, p, false);
+                }
+            } catch (NullPointerException npe){
+                System.out.println("No file selected");
             }
         });
     }
@@ -129,27 +146,32 @@ public class Controller implements Initializable {
         //GRID----------------------------------------
         //Square
         gc.strokeLine(1, 1, 700, 1);
-        gc.strokeLine(700, 1, 700, 700);
-        gc.strokeLine(700, 700, 1, 700);
-        gc.strokeLine(1, 700, 1, 0);
+        gc.strokeLine(700, 1, 700, 585);
+        gc.strokeLine(700, 585, 1, 585);
+        gc.strokeLine(1, 585, 1, 1);
 
         //Grid lines
-        gc.strokeLine(0, 140, 700, 140);
-        gc.strokeLine(0, 280, 700, 280);
-        gc.strokeLine(0, 420, 700, 420);
-        gc.strokeLine(0, 560, 700, 560);
-        gc.strokeLine(117, 0, 117, 700);
-        gc.strokeLine(234, 0, 234, 700);
-        gc.strokeLine(351, 0, 351, 700);
-        gc.strokeLine(468, 0, 468, 700);
-        gc.strokeLine(585, 0, 585, 700);
+        gc.strokeLine(0, 117, 700, 117);
+        gc.strokeLine(0, 234, 700, 234);
+        gc.strokeLine(0, 351, 700, 351);
+        gc.strokeLine(0, 468, 700, 468);
+        gc.strokeLine(117, 0, 117, 585);
+        gc.strokeLine(234, 0, 234, 585);
+        gc.strokeLine(351, 0, 351, 585);
+        gc.strokeLine(468, 0, 468, 585);
+        gc.strokeLine(585, 0, 585, 585);
         //----------------------------------------------
     }
 
-    private void drawProductLocations(GraphicsContext gc, Product pro) {
+    public void drawProductLocations(GraphicsContext gc, Product pro, boolean isGet) {
         Location changedLoc = locationIdentifier(pro.getLocation());
 
-        gc.fillRect(changedLoc.getX()+117/2-60, changedLoc.getY()+140/2-71.5, 80, 80);
+        if(!isGet) {
+            gc.setFill(Color.RED);
+        } else {
+            gc.setFill(Color.GREEN);
+        }
+        gc.fillRect(changedLoc.getX(), changedLoc.getY(), 87, 87);
     }
 
     private void drawLines(GraphicsContext gc, ArrayList<Location> locations) {
@@ -163,7 +185,7 @@ public class Controller implements Initializable {
         for(int i = 0; i < correctedLocations.size() - 1; i++) {
             int y = correctedLocations.get(j).getY();
             int x = correctedLocations.get(j).getX();
-            gc.strokeLine(correctedLocations.get(i).getX()+40, correctedLocations.get(i).getY() + 40,x + 20, y + 30);
+            gc.strokeLine(correctedLocations.get(i).getX() + 44, correctedLocations.get(i).getY() + 44,x + 44, y + 44);
             j++;
             }
     }
@@ -175,30 +197,30 @@ public class Controller implements Initializable {
 
         //x Actuals
         if(loc.getX() == 0){
-            xActual = 20;
+            xActual = 15;
         } else if(loc.getX() == 1){
-            xActual = 137;
+            xActual = 132;
         } else if(loc.getX() == 2){
-            xActual = 252;
+            xActual = 249;
         } else if(loc.getX() == 3){
-            xActual = 369;
+            xActual = 366;
         } else if(loc.getX() == 4){
-            xActual = 486;
+            xActual = 483;
         } else if(loc.getX() == 5){
-            xActual = 603;
+            xActual = 600;
         }
 
         //y Actuals
         if(loc.getY() == 0){
-            yActual = 30;
+            yActual = 15;
         } else if(loc.getY() == 1){
-            yActual = 170;
+            yActual = 132;
         } else if(loc.getY() == 2){
-            yActual = 310;
+            yActual = 249;
         } else if(loc.getY() == 3){
-            yActual = 490;
+            yActual = 366;
         } else if(loc.getY() == 4){
-            yActual = 630;
+            yActual = 483;
         }
         Location locFinal = new Location(xActual, yActual);
 

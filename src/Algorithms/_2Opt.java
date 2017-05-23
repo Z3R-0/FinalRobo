@@ -70,11 +70,10 @@ public class _2Opt extends Algorithm{
                         improve = 0;
                         route = nieuwe_route;
                         besteAfstand = new_distance;
-                        System.out.println("\nVERBETERING\n");
                         System.out.println(berekenTotaleAfstand(nieuwe_route));
                         System.out.println(nieuwe_route.toString());
                     } else {
-                        System.out.println("Geen verbetering!\n");
+                        System.out.print("");
                     }
                 }
             }
@@ -106,7 +105,6 @@ public class _2Opt extends Algorithm{
             Location Location = route.get(c);
             nieuwe_route.add(Location);
         }
-        System.out.println("2opt uitgevoerd");
         return nieuwe_route;
     }
 

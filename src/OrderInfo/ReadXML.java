@@ -1,15 +1,19 @@
 package OrderInfo;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 public class ReadXML {
 	private Customer customer1;
@@ -58,7 +62,15 @@ public class ReadXML {
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (NullPointerException npe){
+			npe.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
 			e.printStackTrace();
 		}
 	}
