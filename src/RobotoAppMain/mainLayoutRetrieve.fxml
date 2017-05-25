@@ -10,61 +10,91 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RobotoAppMain.Controller">
-   <children>
-      <BorderPane fx:id="mainPaneRetrieve" prefHeight="768.0" prefWidth="1366.0">
-         <right>
-            <SplitPane dividerPositions="0.19015047879616964" orientation="VERTICAL" prefHeight="733.0" prefWidth="621.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="293.0" style="-fx-background-color: BEIGE;">
-                     <children>
-                        <TextField fx:id="fxTextFieldFile" layoutX="126.0" layoutY="24.0" />
-                        <Label layoutX="53.0" layoutY="29.0" prefHeight="21.0" prefWidth="60.0" text="Bestand:" />
-                        <Button fx:id="fxButtonExecute" layoutX="53.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="Order uitvoeren" />
-                        <Button fx:id="fxButtonSelectFile" layoutX="319.0" layoutY="24.0" mnemonicParsing="false" text="..." />
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: LIGHTGREY;">
-                     <children>
-                        <Pane layoutX="6.0" layoutY="14.0" prefHeight="565.0" prefWidth="611.0" style="-fx-border-color: BLACK;">
+<BorderPane maxHeight="540.0" maxWidth="1440.0" prefHeight="540.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RobotoAppMain.Controller">
+   <left>
+      <AnchorPane maxHeight="540.0" maxWidth="960.0" prefHeight="540.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="mainPaneRetrieve" maxHeight="540.0" maxWidth="960.0" prefHeight="540.0" prefWidth="960.0">
+               <right>
+                  <SplitPane dividerPositions="0.24535315985130113" orientation="VERTICAL" prefHeight="500.0" prefWidth="440.0" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="293.0" style="-fx-background-color: BEIGE;">
                            <children>
-                              <Label layoutX="14.0" layoutY="14.0" text="Status:" />
-                              <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="15.0" layoutY="39.0" prefHeight="510.0" prefWidth="582.0" />
+                              <TextField fx:id="fxTextFieldFile" layoutX="132.0" layoutY="17.0" />
+                              <Label layoutX="59.0" layoutY="22.0" prefHeight="21.0" prefWidth="60.0" text="Bestand:" />
+                              <Button fx:id="fxButtonExecute" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="Order uitvoeren" />
+                              <Button fx:id="fxButtonSelectFile" layoutX="325.0" layoutY="17.0" mnemonicParsing="false" text="..." />
+                              <Button layoutX="224.0" layoutY="79.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" text="Reset" />
                            </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </right>
-         <top>
-            <Pane prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: BLACK;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label layoutX="998.0" layoutY="8.0" text="Inpakrobot" />
-                  <Pane layoutX="1.0" layoutY="1.0" prefHeight="33.0" prefWidth="683.0" style="-fx-background-color: LIGHTGREY;" />
-                  <Label layoutX="297.0" layoutY="8.0" prefHeight="21.0" prefWidth="90.0" text="Ophaalrobot">
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: LIGHTGREY;">
+                           <children>
+                              <Pane layoutX="6.0" layoutY="14.0" prefHeight="375.0" prefWidth="429.0" style="-fx-border-color: BLACK;">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="Status:" />
+                                    <TextArea fx:id="fxTextAreaStatusRetrieve" editable="false" layoutX="15.0" layoutY="39.0" prefHeight="318.0" prefWidth="403.0" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </right>
+               <left>
+                  <Pane prefHeight="500.0" prefWidth="520.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                  </Label>
-                  <Button layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="683.0" />
-                  <Button fx:id="fxButtonPacking" layoutX="693.0" layoutY="2.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="683.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="683.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-               </children>
-            </Pane>
-         </top>
-         <left>
-            <Pane prefHeight="600.0" prefWidth="737.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <children>
-                  <Canvas fx:id="fxCanvasRetrieve" height="706.0" layoutX="14.0" layoutY="14.0" width="706.0" />
-               </children>
-            </Pane>
-         </left>
-      </BorderPane>
-   </children>
-</AnchorPane>
+                     <children>
+                        <Canvas fx:id="fxCanvasRetrieve" height="494.0" layoutX="14.0" layoutY="14.0" width="494.0" />
+                     </children>
+                  </Pane>
+               </left>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="540.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="mainPaneRetrieve1" prefHeight="540.0" prefWidth="520.0">
+               <left>
+                  <Pane prefHeight="420.0" prefWidth="520.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Canvas height="494.0" layoutX="14.0" layoutY="14.0" width="494.0" />
+                     </children>
+                  </Pane>
+               </left>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </right>
+   <top>
+      <Pane maxHeight="40.0" maxWidth="1920.0" prefHeight="40.0" prefWidth="1920.0" style="-fx-border-color: BLACK;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="955.0" prefHeight="40.0" prefWidth="10.0" style="-fx-background-color: BLACK;" />
+            <Label layoutX="210.0" layoutY="5.0" text="Ophaalrobot">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="1180.0" layoutY="5.0" text="Inpakrobot">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Pane layoutX="515.0" prefHeight="40.0" prefWidth="10.0" style="-fx-background-color: BLACK;" />
+            <Label layoutX="655.0" layoutY="5.0" text="Controller Console">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

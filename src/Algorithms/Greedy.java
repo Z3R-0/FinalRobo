@@ -1,6 +1,8 @@
 package Algorithms;
 
 import java.util.ArrayList;
+
+import RobotClasses.Box;
 import Warehouse.Product;
 
 import java.util.ArrayList;
@@ -35,5 +37,10 @@ public class Greedy extends Algorithm {
             }
         }
         return route;
+    }
+
+    @Override
+    protected ArrayList<Box> Run(ArrayList<Product> p) {
+        return null;
     }
 }

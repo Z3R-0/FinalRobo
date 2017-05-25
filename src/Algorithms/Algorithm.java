@@ -1,11 +1,13 @@
 package Algorithms;
 
+import OrderInfo.Order;
+import RobotClasses.Box;
 import Warehouse.Product;
 
 import java.util.ArrayList;
 
 public abstract class Algorithm {
-
+    protected int hoogte = 10;
     protected boolean ControleerOrder(ArrayList<Product> order){
         return order.size()!=0;
     }
@@ -25,6 +27,7 @@ public abstract class Algorithm {
     }
 
     abstract protected ArrayList<Product> BerekenRoute(ArrayList<Product> order);
+    protected abstract ArrayList<Box> Run(ArrayList<Product> p);
 
 
 

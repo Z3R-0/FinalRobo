@@ -1,6 +1,7 @@
 package Algorithms;
 
 
+import RobotClasses.Box;
 import Warehouse.Location;
 import Warehouse.Product;
 
@@ -87,6 +88,11 @@ public class _2Opt extends Algorithm{
             }
         }
         return goedevolgorde;
+    }
+
+    @Override
+    protected ArrayList<Box> Run(ArrayList<Product> p) {
+        return null;
     }
 
     private ArrayList<Location> verwissel2Opt(ArrayList<Location> route, final int i, final int k){

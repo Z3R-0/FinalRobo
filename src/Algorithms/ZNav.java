@@ -1,5 +1,6 @@
 package Algorithms;
 
+import RobotClasses.Box;
 import Warehouse.Product;
 
 import java.util.ArrayList;
@@ -28,5 +29,10 @@ public class ZNav extends Algorithm{
             routeZNav = optSwap.BerekenStart(routeZAlgoritme);
             return routeZNav;
         }
+    }
+
+    @Override
+    protected ArrayList<Box> Run(ArrayList<Product> p) {
+        return null;
     }
 }

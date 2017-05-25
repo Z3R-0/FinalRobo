@@ -1,5 +1,6 @@
 package Algorithms;
 
+import RobotClasses.Box;
 import Warehouse.Product;
 
 import java.util.ArrayList;
@@ -72,5 +73,10 @@ public class ZAlgorithm extends Algorithm{
             }
         }while(order.size()!=0);
         return route;
+    }
+
+    @Override
+    protected ArrayList<Box> Run(ArrayList<Product> p) {
+        return null;
     }
 }
